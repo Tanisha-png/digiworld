@@ -2,8 +2,15 @@
 <h1>About the Cat Collector</h1>
 <hr />
 <p class="page-content">
-  <h2>Cat Fact</h2>
-  <h3>{{ fact }}</h3>
+  <h2>Digimon Name</h2>
+  <h3>
+    <ul>
+      {% for digimon in digimon_list %}
+        <li>
+          {{ digimon.name }} ({{ digimon.level }})
+        </li>
+      {% endfor %}
+    </ul>
 </p>
 
 {% endblock %}
