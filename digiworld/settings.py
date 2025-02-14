@@ -124,5 +124,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_URL = 'home'
-LOGIN_REDIRECT_URL = 'cat-index'
+LOGIN_REDIRECT_URL = 'digimon-index'
 LOGOUT_REDIRECT_URL = 'home'
