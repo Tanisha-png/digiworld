@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 class Digimon(models.Model):
-  name = models.CharField(max_length=250)
+  name = models.CharField(max_length=250, unique=True)
   img = models.CharField(max_length=250)
   level = models.TextField(max_length=250)
   happiness = models.IntegerField()
