@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1>Digimon List</h1>
+
+<div class="row">
+  {% for digimon in digimon %}
+    <div class="col s12 m6 l4">
+      <div class="card">
+        <div class="card-image">
+          <img src="{{ digimon.img }}" alt="{{ digimon.name }}">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ digimon.name }}</span>
+          <p>Level: {{ digimon.level }}</p>
+          {% if digimon.happiness %}
+            <p>Happiness: {{ digimon.happiness }}</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  {% empty %}
+    <h3>No Digimon have been added yet!</h3>
+  {% endfor %}
+</div>
+
+{% endblock %}

@@ -34,11 +34,11 @@ def about(request):
     digimon_list = response.json()
     return render(request, 'about.html', {'digimon_list': digimon_list})
 
+def digimon_index(request):
+    digimon = Digimon.objects.all()
+    return render(request, 'digimon/index.html', {'digimon': digimon})
+
 class DigimonCreate(CreateView):
     model = Digimon
     fields = ['name', 'img', 'level', 'happiness']
     success_url = '/digimon/'
-
-    
-
-
