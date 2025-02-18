@@ -46,7 +46,7 @@ class DigimonCreate(CreateView):
     success_url = '/digimon/'
 
 def signup(request):
-    error_message == ''
+    error_message = ''
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
