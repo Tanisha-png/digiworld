@@ -1,30 +1,30 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/digimon/digimon-index.css' %}" />
+{% endblock %} {% block content %}
 
 <h1>Digimon List</h1>
 
 <div class="row">
   {% for digimon in digimon %}
-  <div class="col s12 m6 l4">
-    <div class="card">
-      <div class="card-image">
-        <img src="{{ digimon.img }}" alt="{{ digimon.name }}" />
-      </div>
-      <div class="card-content">
-        <span class="card-title">{{ digimon.name }}</span>
-        <p>Level: {{ digimon.level }}</p>
-        {% if digimon.happiness %}
-        <p>Happiness: {{ digimon.happiness }}</p>
-        {% endif %}
-        <form
+  <div class="card">
+    <div class="card-image">
+      <img src="{{ digimon.img }}" alt="{{ digimon.name }}" />
+    </div>
+    <div class="card-content">
+      <span class="card-title">{{ digimon.name }}</span>
+      <p>Level: {{ digimon.level }}</p>
+      {% if digimon.happiness %}
+      <p>Happiness: {{ digimon.happiness }}</p>
+      {% endif %}
+      <form
         action="{% url 'associate-digimon' user.id digimon.id %}"
         method="post"
-          class="subsection-content"
-          autocomplete="off"
-        >
-          {% csrf_token %} {{ feeding_form.as_p }}
-          <button type="submit" class="btn submit">Add Digimon</button>
-        </form>
-      </div>
+        class="subsection-content"
+        autocomplete="off"
+      >
+        {% csrf_token %} {{ feeding_form.as_p }}
+        <button type="submit" class="btnsubmit">Add Digimon</button>
+      </form>
     </div>
   </div>
   {% empty %}
