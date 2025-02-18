@@ -10,6 +10,8 @@ from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from main_app.models import Digimon
+from django.core.exceptions import ValidationError
+from django.shortcuts import get_object_or_404, redirect
 
 
 # Create your views here.
@@ -45,14 +47,14 @@ class DigimonCreate(CreateView):
     success_url = '/digimon/' 
     
 def associate_digimon(request, user_id, digimon_id):
-  # Note that you can pass a toy's id instead of the whole object
   Digimon.objects.get(id=digimon_id).user.add(user_id)
-  return redirect('digifarm', digimon_id=digimon_id)
+  return redirect('digifarm', user_id=user_id)
 
-def digifarm(request, user_id, digimon_id):
-    digimon = Digimon.objects.get(id=digimon_id)
+def digifarm(request, user_id ):
+    user = request.user
+    digifarm = user.digimon.all()
     return render(request, 'digimon/digifarm.html', {
-        'digimon': digimon,
+        'digifarm': digifarm,
         # 'user_id': user_id
     })
 
