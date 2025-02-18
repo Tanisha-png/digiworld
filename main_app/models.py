@@ -15,20 +15,20 @@ class Digimon(models.Model):
   user = models.ManyToManyField(User, related_name='digimon')
   # User --< Digimon
   # user = models.ForeignKey(User, on_delete=models.CASCADE)
-  # def clean(self):
-  #   """Ensure a user cannot have more than 6 Digimon."""
-  #   for user in self.user.all():
-  #     if user.digimon.count() >= 6:
-  #       raise ValidationError(f"{user.username} cannot have more than 6 Digimon.")
-  # def save(self, *args, **kwargs):
-  #   """Call clean() before saving to enforce validation."""
-  #   self.clean()
-  #   super().save(*args, **kwargs)
-  # def add_user(self, user):
-  #   """Custom method to add a user while enforcing the limit."""
-  #   if user.digimon.count() >= 6:
-  #     raise ValidationError(f"{user.username} cannot have more than 6 Digimon.")
-  #   self.user.add(user)  
+  def clean(self):
+    """Ensure a user cannot have more than 6 Digimon."""
+    for user in self.user.all():
+      if user.digimon.count() >= 6:
+        raise ValidationError(f"{user.username} cannot have more than 6 Digimon in their digifarm.")
+  def save(self, *args, **kwargs):
+    """Call clean() before saving to enforce validation."""
+    self.clean()
+    super().save(*args, **kwargs)
+  def add_user(self, user):
+    """Custom method to add a user while enforcing the limit."""
+    if user.digimon.count() >= 6:
+      raise ValidationError(f"{user.username} cannot have more than 6 Digimon in their digifarm.")
+    self.user.add(user)  
   
   
   def __str__(self):
@@ -60,7 +60,7 @@ class Digimon(models.Model):
   The child in a 1:many relationship must have a ForeignKey that ref's
     the parent object's ID. Because a feeding belogs to a cat, we need
     to add the FreignKey to the Feeding model
-  The name 'cat' allos us to access the cat object for any feeding
+  The name 'cat' alows us to access the cat object for any feeding
     object, Ex. the_feeding.cat -> a cat object.
   This allows us to do things such as the_feeding.cat.name to render
     a feeding's cat's name.

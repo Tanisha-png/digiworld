@@ -47,8 +47,17 @@ class DigimonCreate(CreateView):
     success_url = '/digimon/' 
     
 def associate_digimon(request, user_id, digimon_id):
-  Digimon.objects.get(id=digimon_id).user.add(user_id)
-  return redirect('digifarm', user_id=user_id)
+    try:
+        digimon = Digimon.objects.get(id=digimon_id)
+        user = request.user
+        if user.digimon.count() >= 6:
+            # You could add a message here using Django's messages framework
+            return redirect('digifarm', user_id=user_id)
+        digimon.user.add(user)
+        return redirect('digifarm', user_id=user_id)
+    except ValidationError as e:
+        # Handle the validation error
+        return redirect('digifarm', user_id=user_id)
 
 def digifarm(request, user_id ):
     user = request.user
