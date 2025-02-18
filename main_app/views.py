@@ -16,6 +16,8 @@ from main_app.models import Digimon
 class Home(LoginView):
     template_name = 'home.html'
 
+
+
 def get_cached_digimon(url, cache_key):
     cached_data = cache.get(cache_key)
     if cached_data:
@@ -42,3 +44,17 @@ class DigimonCreate(CreateView):
     model = Digimon
     fields = ['name', 'img', 'level', 'happiness']
     success_url = '/digimon/'
+
+def signup(request):
+    error_message == ''
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('digimon-index')
+        else:
+            error_message = 'Invalid sign up - try again'
+    form = UserCreationForm()
+    context = {'form': form, 'error_message': error_message}
+    return render(request, 'signup.html', context)
