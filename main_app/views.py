@@ -42,16 +42,19 @@ def digimon_index(request):
 class DigimonCreate(CreateView):
     model = Digimon
     fields = ['name', 'img', 'level', 'happiness']
-    success_url = '/digimon/'
-
-# def digifarm(request, user_id, digimon_id):
-#   Digimon.objects.get(id=digimon_id).user.add(user_id)
-  
+    success_url = '/digimon/' 
     
 def associate_digimon(request, user_id, digimon_id):
   # Note that you can pass a toy's id instead of the whole object
   Digimon.objects.get(id=digimon_id).user.add(user_id)
   return redirect('digifarm', digimon_id=digimon_id)
+
+def digifarm(request, user_id, digimon_id):
+    digimon = Digimon.objects.get(id=digimon_id)
+    return render(request, 'digimon/digifarm.html', {
+        'digimon': digimon,
+        # 'user_id': user_id
+    })
 
 # def remove_toy(request, cat_id, toy_id):
 #   Cat.objects.get(id=cat_id).toys.remove(toy_id)
