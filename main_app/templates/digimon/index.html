@@ -16,8 +16,8 @@
         <p>Happiness: {{ digimon.happiness }}</p>
         {% endif %}
         <form
-          action="{% url 'associate-digimon' digimon.id %}"
-          method="post"
+        action="{% url 'associate-digimon' user.id digimon.id %}"
+        method="post"
           class="subsection-content"
           autocomplete="off"
         >
