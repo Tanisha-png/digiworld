@@ -14,7 +14,7 @@ from main_app.models import Digimon
 # Create your views here.
 
 class Home(LoginView):
-  template_name = 'home.html'
+    template_name = 'home.html'
 
 def get_cached_digimon(url, cache_key):
     cached_data = cache.get(cache_key)
