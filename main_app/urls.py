@@ -12,5 +12,5 @@ urlpatterns = [
     # path('digimon/<int:digimon_id>/', views.digimon_detail, name='digimon-detail'),
     # path('digimon/<int:pk>/update/', views.DigimonUpdate.as_view(), name='digimon-update'),
     # path('digimon/<int:pk>/delete/', views.DigimonDelete.as_view(), name='digimon-delete'),
-    # path('accounts/signup/', views.signup, name='signup'),
+    path('accounts/signup/', views.signup, name='signup'),
 ]

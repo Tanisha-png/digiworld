@@ -24,11 +24,9 @@
       </div>
       <nav>
         <ul>
-          {% comment %} {% if user.is_authenticated %} {% endcomment %}
+          {% if user.is_authenticated %}
           <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
-          {% comment %}
           <li><a href="{% url 'cat-create' %}">Add a Digimon</a></li>
-          {% endcomment %}
           <li><a href="{% url 'about' %}">About</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
@@ -37,13 +35,12 @@
             </form>
           </li>
           <li>Welcome, {{user.username }}</li>
-          {% comment %} {% else %} {% endcomment %}
+            {% else %}
           <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
           <li><a href="{% url 'home' %}">Log In</a></li>
-          {% comment %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          {% endcomment %} {% comment %} {% endif %} {% endcomment %}
+          {% endif %}
         </ul>
       </nav>
     </header>
