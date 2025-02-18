@@ -11,9 +11,9 @@ class Digimon(models.Model):
   level = models.TextField(max_length=250)
   happiness = models.IntegerField()
   # Create a cat >--< Toy relationship
-  # toys = models.ManyToManyField('Toy')
-  # User --< Cat
-  user = models.ForeignKey(User, on_delete=models.CASCADE)
+  user = models.ManyToManyField('Digimon')
+  # User --< Digimon
+  # user = models.ForeignKey(User, on_delete=models.CASCADE)
   
   def __str__(self):
     return f"{self.name} ({self.id})"
@@ -25,7 +25,7 @@ class Digimon(models.Model):
   def get_absolute_url(self):
     # Use the 'reverse' function to dynamically find URL for 
     #   viewing this cat's details
-    return reverse('digimon-detail', kwargs={'digimon_id': self.id })
+    return reverse('digimon-index', kwargs={'digimon_id': self.id })
   
   
 # class Feeding(models.Model):
