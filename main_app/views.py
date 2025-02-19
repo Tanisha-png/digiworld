@@ -12,7 +12,7 @@ from django.views.generic import ListView, DetailView
 from main_app.models import Digimon
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect
-
+from django.core.paginator import Paginator
 
 # Create your views here.
 
@@ -33,12 +33,13 @@ def get_cached_digimon(url, cache_key):
         return None
 
 def about(request):
-    response = requests.get('https://digimon-api.vercel.app/api/digimon')
-    digimon_list = response.json()
-    return render(request, 'about.html', {'digimon_list': digimon_list})
+    return render(request, 'about.html')
 
 def digimon_index(request):
-    digimon = Digimon.objects.all()
+    digimon_list = Digimon.objects.all()
+    paginator = Paginator(digimon_list, 25)  # Show 25 digimon per page
+    page_number = request.GET.get('page')
+    digimon = paginator.get_page(page_number)
     return render(request, 'digimon/index.html', {'digimon': digimon})
 
 class DigimonCreate(CreateView):

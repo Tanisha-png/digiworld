@@ -4,6 +4,12 @@
 
 <h1>Digimon List</h1>
 
+{% if user.digimon.count >= 6 %}
+<div class="card-panel yellow lighten-4">
+    <span class="black-text">You already have 6 Digimon on your digifarm! That's the maximum allowed.</span>
+</div>
+{% endif %}
+
 <div class="row">
   {% for digimon in digimon %}
   <div class="card">
@@ -12,7 +18,7 @@
     </div>
     <div class="card-content">
       <span class="card-title">{{ digimon.name }}</span>
-      <p>Level: {{ digimon.level }} change</p>
+      <p>Level: {{ digimon.level }}</p>
       {% if digimon.happiness %}
       <p>Happiness: {{ digimon.happiness }}</p>
       {% endif %}
@@ -30,6 +36,24 @@
   {% empty %}
   <h3>No Digimon have been added yet!</h3>
   {% endfor %}
+</div>
+
+<div class="pagination center-align">
+    <ul class="pagination">
+        {% if digimon.has_previous %}
+            <li class="waves-effect"><a href="?page=1">&laquo; First</a></li>
+            <li class="waves-effect"><a href="?page={{ digimon.previous_page_number }}">&lsaquo; Previous</a></li>
+        {% endif %}
+
+        <li class="active">
+            <span>Page {{ digimon.number }} of {{ digimon.paginator.num_pages }}</span>
+        </li>
+
+        {% if digimon.has_next %}
+            <li class="waves-effect"><a href="?page={{ digimon.next_page_number }}">Next &rsaquo;</a></li>
+            <li class="waves-effect"><a href="?page={{ digimon.paginator.num_pages }}">Last &raquo;</a></li>
+        {% endif %}
+    </ul>
 </div>
 
 {% endblock %}
