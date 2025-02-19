@@ -13,6 +13,7 @@ class Digimon(models.Model):
   happiness = models.IntegerField()
   # Create a cat >--< Toy relationship
   user = models.ManyToManyField(User, related_name='digimon')
+  toys = models.ManyToManyField('Toy')
   # User --< Digimon
   # user = models.ForeignKey(User, on_delete=models.CASCADE)
   def clean(self):
@@ -43,50 +44,16 @@ class Digimon(models.Model):
     #   viewing this cat's details
     return reverse('digimon-index', kwargs={'digimon_id': self.id })
   
- 
-  
-  
-# class Feeding(models.Model):
-#   date = models.DateField('Feeding date')
-#   meal = models.CharField(
-#     max_length=1,
-#     # add the "choices" field option
-#     choices=MEALS,
-#     # set default value for meal to be 'B'
-#     default=MEALS[0][0]
-#     )
- 
-  '''
-  The child in a 1:many relationship must have a ForeignKey that ref's
-    the parent object's ID. Because a feeding belogs to a cat, we need
-    to add the FreignKey to the Feeding model
-  The name 'cat' alows us to access the cat object for any feeding
-    object, Ex. the_feeding.cat -> a cat object.
-  This allows us to do things such as the_feeding.cat.name to render
-    a feeding's cat's name.
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
     
-  However, the column name in the feeding table, is named cat_id, which
-    holds the id/PrimaryKey (pk) of the cat object that the feeding
-    belongs to.
-    
-  What about accessing the feeding for a cat? By default, there will
-    be an attribute added to a cat object named feeding_set, which is a
-    "related (objects) manager", thus we will be able to access a cat's
-    feedings like this: at.feeding_set.all() or cat.feeding_set.filter(...)
-  If you want to, you can change the name of the related manager by adding a
-    related_name kwarg to the ForeignKey, 
-    Ex. models.ForeignKey(Cat, on_delete=models.CASCADE, related_name='feedings')
-    
-  '''
-  # cat = models.ForeignKey(Cat, on_delete=models.CASCADE)
+    def get_absolute_url(self):
+        return reverse('toy-detail', kwargs={'pk': self.id})
   
-  # def __str__(self):
-  #   # Method for obtaining the friendly value of a Field.choice
-  #   return f"{self.get_meal_display()} on {self.date}"
-  
-  # # Define the default order of feedings
-  # class Meta:
-  #   ordering = ['date']  # This line makes the newest feedings appear first
     
 
   

@@ -9,7 +9,7 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from main_app.models import Digimon
+from main_app.models import Digimon, Toy
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect
 from django.core.paginator import Paginator
@@ -91,3 +91,29 @@ def signup(request):
     form = UserCreationForm()
     context = {'form': form, 'error_message': error_message}
     return render(request, 'signup.html', context)
+
+class ToyCreate(LoginRequiredMixin, CreateView):
+    model = Toy
+    fields = '__all__'
+
+class ToyList(LoginRequiredMixin, ListView):
+    model = Toy
+
+class ToyDetail(LoginRequiredMixin, DetailView):
+    model = Toy
+
+class ToyUpdate(LoginRequiredMixin, UpdateView):
+    model = Toy
+    fields = ['name', 'color']
+
+class ToyDelete(LoginRequiredMixin, DeleteView):
+    model = Toy
+    success_url = '/toys/'
+
+def associate_toy(request,digimon_id, toy_id):
+    Digimon.objects.get(id=digimon_id).toys.add(toy_id)
+    return redirect('digifarm', digimon_id=digimon_id, toy_id=toy_id)
+
+def remove_toy(request, digimon_id, toy_id):
+    Digimon.objects.get(id=digimon_id).toys.remove(toy_id)
+    return redirect('digifarm', digimon_id=digimon_id)

@@ -29,6 +29,15 @@
             {% csrf_token %} 
             <button type="submit" class="btn submit">Remove Digimon</button>
           </form>
+          <form
+          action="{% url 'associate-toy' toy.id digimon.id %}"
+          method="post"
+            class="subsection-content"
+            autocomplete="off"
+          >
+            {% csrf_token %} 
+            <button type="submit" class="btn submit">Remove Digimon</button>
+          </form>
           {% endif %}
         </div>
       </div>
