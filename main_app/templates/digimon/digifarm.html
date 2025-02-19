@@ -29,20 +29,7 @@
             {% csrf_token %} 
             <button type="submit" class="btn submit">Remove Digimon</button>
           </form>
-          {% comment %} <form
-          action="{% url 'associate-toy' digimon.id toy.id %}"
-          method="post"
-          class="subsection-content"
-          autocomplete="off"
-          > {% endcomment %}
-            {% csrf_token %}
             <div class="input-field">
-              {% comment %} <select name="toy_id" required>
-                <option value="" disabled selected>Choose a toy</option>
-                {% for toy in toys %}
-                <option value="{{ toy.id }}">{{ toy.name }}</option>
-                {% endfor %}
-              </select> {% endcomment %}
               <h3>Available Toys</h3>
               <div class="subsection-content">
               {% for toy in toys %}
@@ -62,7 +49,6 @@
             <button type="submit" class="btn submit">Add Toy</button>
             {% endfor %}
           </form>
-          {% comment %} {% endif %} {% endcomment %}
         </div>
       </div>
     </div>
