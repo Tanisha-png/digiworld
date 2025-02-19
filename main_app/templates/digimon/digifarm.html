@@ -30,13 +30,22 @@
             <button type="submit" class="btn submit">Remove Digimon</button>
           </form>
           <form
-          action="{% url 'associate-toy' toy.id digimon.id %}"
+          action="{% url 'associate-toy' digimon.id %}"
           method="post"
             class="subsection-content"
             autocomplete="off"
           >
-            {% csrf_token %} 
-            <button type="submit" class="btn submit">Remove Digimon</button>
+            {% csrf_token %}
+            <div class="input-field">
+              <select name="toy_id" required>
+                <option value="" disabled selected>Choose a toy</option>
+                {% for toy in toys %}
+                <option value="{{ toy.id }}">{{ toy.name }}</option>
+                {% endfor %}
+              </select>
+              <label>Select Toy</label>
+            </div>
+            <button type="submit" class="btn submit">Add Toy</button>
           </form>
           {% endif %}
         </div>

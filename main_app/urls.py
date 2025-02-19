@@ -17,7 +17,7 @@ urlpatterns = [
   path('toys/<int:pk>/', views.ToyDetail.as_view(), name='toy-detail'),
   path('toys/<int:pk>/update/', views.ToyUpdate.as_view(), name = 'toy-update'),
   path('toys/<int:pk>/delete/', views.ToyDelete.as_view(), name = 'toy-delete'),
-  path('digimon/<int:digimon_id>/associate_toy/<int:toy_id>/', views.associate_toy, name='associate_toy'),
+  path('digimon/<int:digimon_id>/associate-toy/', views.associate_toy, name='associate-toy'),
   path('digimon/<int:digimon_id>/remove-toy/<int:toy_id>/', views.remove_toy, name='remove-toy'),
   path('accounts/signup/', views.signup, name='signup'),
 ]
