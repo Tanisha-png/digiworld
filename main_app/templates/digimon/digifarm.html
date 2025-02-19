@@ -19,15 +19,15 @@
           {% if digimon.happiness %}
           <p>Happiness: {{ digimon.happiness }}</p>
           {% endif %}
-          {% if user.digimon.count < 6 %}
+          {% if request.user == user %}
           <form
-          action="{% url 'associate-digimon' user.id digimon.id %}"
+          action="{% url 'remove-digimon' user.id digimon.id %}"
           method="post"
             class="subsection-content"
             autocomplete="off"
           >
-            {% csrf_token %} {{ feeding_form.as_p }}
-            <button type="submit" class="btn submit">Add Digimon</button>
+            {% csrf_token %} 
+            <button type="submit" class="btn submit">Remove Digimon</button>
           </form>
           {% endif %}
         </div>

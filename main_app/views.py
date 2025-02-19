@@ -13,6 +13,7 @@ from main_app.models import Digimon
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 
 # Create your views here.
 
@@ -60,12 +61,17 @@ def associate_digimon(request, user_id, digimon_id):
         # Handle the validation error
         return redirect('digifarm', user_id=user_id)
 
-def digifarm(request, user_id ):
+def remove_digimon(request, user_id, digimon_id):
     user = request.user
+    Digimon.objects.get(id=digimon_id).user.remove(user)
+    return redirect('digifarm', user_id=user_id)
+
+def digifarm(request, user_id ):
+    user = User.objects.get(id=user_id)
     digifarm = user.digimon.all()
     return render(request, 'digimon/digifarm.html', {
         'digifarm': digifarm,
-        # 'user_id': user_id
+        'user': user
     })
 
 # def remove_toy(request, cat_id, toy_id):
