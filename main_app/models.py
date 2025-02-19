@@ -11,7 +11,7 @@ class Digimon(models.Model):
   img = models.CharField(max_length=260)
   level = models.TextField(max_length=260)
   happiness = models.IntegerField()
-  # Create a cat >--< Toy relationship
+  
   user = models.ManyToManyField(User, related_name='digimon')
   toys = models.ManyToManyField('Toy')
   # User --< Digimon
@@ -43,7 +43,16 @@ class Digimon(models.Model):
     # Use the 'reverse' function to dynamically find URL for 
     #   viewing this cat's details
     return reverse('digimon-index', kwargs={'digimon_id': self.id })
+
+class UserDigifarm(models.Model):
+  user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_digifarm")
+  digimon = models.ForeignKey(Digimon, on_delete=models.CASCADE, related_name="user_digifarm")
   
+  # Add fields to here for happiness, nicknames, etc.
+  
+  def __str__(self):
+    return f"{self.user.username}'s {self.digimon.name}"
+
 class Toy(models.Model):
     name = models.CharField(max_length=50)
     color = models.CharField(max_length=20)
@@ -53,7 +62,14 @@ class Toy(models.Model):
     
     def get_absolute_url(self):
         return reverse('toy-detail', kwargs={'pk': self.id})
-  
-    
 
+class DigimonToy(models.Model):
+  user_digifarm = models.ForeignKey(UserDigifarm, on_delete=models.CASCADE, related_name="digimon_toys")
+  toy = models.ForeignKey(Toy, on_delete=models.CASCADE, related_name="digimon_toys")
   
+  def __str__(self):
+    return f"{self.user_digifarm}'s {self.user_digifarm.digimon.name}'s {self.toy.name}"
+
+# Accessing all digimon owned by a user in that user's digifarm    
+# user_digifarm = user.user_digifarm.all()
+ 
