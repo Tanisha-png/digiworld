@@ -69,9 +69,11 @@ def remove_digimon(request, user_id, digimon_id):
 def digifarm(request, user_id ):
     user = User.objects.get(id=user_id)
     digifarm = user.digimon.all()
+    toys = Toy.objects.all()
     return render(request, 'digimon/digifarm.html', {
         'digifarm': digifarm,
-        'user': user
+        'user': user,
+        'toys': toys
     })
 
 # def remove_toy(request, cat_id, toy_id):
@@ -110,9 +112,14 @@ class ToyDelete(LoginRequiredMixin, DeleteView):
     model = Toy
     success_url = '/toys/'
 
-def associate_toy(request,digimon_id, toy_id):
-    Digimon.objects.get(id=digimon_id).toys.add(toy_id)
-    return redirect('digifarm', digimon_id=digimon_id, toy_id=toy_id)
+def associate_toy(request, digimon_id):
+    if request.method == 'POST':
+        toy_id = request.POST.get('toy_id')
+        digimon = get_object_or_404(Digimon, id=digimon_id)
+        toy = get_object_or_404(Toy, id=toy_id)
+        digimon.toys.add(toy)
+        return redirect('digifarm', user_id=request.user.id)
+    return redirect('digifarm', user_id=request.user.id)
 
 def remove_toy(request, digimon_id, toy_id):
     Digimon.objects.get(id=digimon_id).toys.remove(toy_id)
