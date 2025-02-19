@@ -9,7 +9,7 @@ from django.contrib.auth import login
 from django.shortcuts import render, redirect
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from main_app.models import Digimon, Toy
+from main_app.models import Digimon, Toy, UserDigifarm, DigimonToy
 from django.core.exceptions import ValidationError
 from django.shortcuts import get_object_or_404, redirect
 from django.core.paginator import Paginator
@@ -56,6 +56,7 @@ def associate_digimon(request, user_id, digimon_id):
             # You could add a message here using Django's messages framework
             return redirect('digifarm', user_id=user_id)
         digimon.user.add(user)
+        userdigifarm = UserDigifarm.objects.create(user=user, digimon=digimon)
         return redirect('digifarm', user_id=user_id)
     except ValidationError as e:
         # Handle the validation error
@@ -63,13 +64,17 @@ def associate_digimon(request, user_id, digimon_id):
 
 def remove_digimon(request, user_id, digimon_id):
     user = request.user
+    digimon = Digimon.objects.get(id=digimon_id)
     Digimon.objects.get(id=digimon_id).user.remove(user)
+    userdigifarm = UserDigifarm.objects.get(user=user, digimon=digimon)
+    userdigifarm.delete()
     return redirect('digifarm', user_id=user_id)
 
 def digifarm(request, user_id ):
     user = User.objects.get(id=user_id)
     digifarm = user.digimon.all()
     toys = Toy.objects.all()
+    print(toys)
     return render(request, 'digimon/digifarm.html', {
         'digifarm': digifarm,
         'user': user,
@@ -112,14 +117,13 @@ class ToyDelete(LoginRequiredMixin, DeleteView):
     model = Toy
     success_url = '/toys/'
 
-def associate_toy(request, digimon_id):
+def associate_toy(request, digimon_id, toy_id):
     if request.method == 'POST':
-        toy_id = request.POST.get('toy_id')
-        digimon = get_object_or_404(Digimon, id=digimon_id)
-        toy = get_object_or_404(Toy, id=toy_id)
-        digimon.toys.add(toy)
-        return redirect('digifarm', user_id=request.user.id)
-    return redirect('digifarm', user_id=request.user.id)
+      digimon = Digimon.objects.get(id=digimon_id)
+      toy = Toy.objects.get(id=toy_id)
+      digifarm = UserDigifarm.objects.get(user=request.user, digimon=digimon)
+      DigimonToy.objects.create(user_digifarm_id=digifarm.id, toy=toy)
+      return redirect('digifarm', user_id=request.user.id)
 
 def remove_toy(request, digimon_id, toy_id):
     Digimon.objects.get(id=digimon_id).toys.remove(toy_id)

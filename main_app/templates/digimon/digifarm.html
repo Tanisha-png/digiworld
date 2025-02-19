@@ -19,7 +19,7 @@
           {% if digimon.happiness %}
           <p>Happiness: {{ digimon.happiness }}</p>
           {% endif %}
-          {% if request.user == user %}
+          {% comment %} {% if request.user == user %} {% endcomment %}
           <form
           action="{% url 'remove-digimon' user.id digimon.id %}"
           method="post"
@@ -29,25 +29,40 @@
             {% csrf_token %} 
             <button type="submit" class="btn submit">Remove Digimon</button>
           </form>
-          <form
-          action="{% url 'associate-toy' digimon.id %}"
+          {% comment %} <form
+          action="{% url 'associate-toy' digimon.id toy.id %}"
           method="post"
-            class="subsection-content"
-            autocomplete="off"
-          >
+          class="subsection-content"
+          autocomplete="off"
+          > {% endcomment %}
             {% csrf_token %}
             <div class="input-field">
-              <select name="toy_id" required>
+              {% comment %} <select name="toy_id" required>
                 <option value="" disabled selected>Choose a toy</option>
                 {% for toy in toys %}
                 <option value="{{ toy.id }}">{{ toy.name }}</option>
                 {% endfor %}
-              </select>
+              </select> {% endcomment %}
+              <h3>Available Toys</h3>
+              <div class="subsection-content">
+              {% for toy in toys %}
+                <div class="toy-container">
+                <div
+                class="color-block"
+                style="background-color: {{ toy.color }}"
+                ></div>
+                <p>{{ toy.color }} {{ toy.name }}</p>
+                <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn submit">Give Toy</button>
+               </form>
+            </div>
               <label>Select Toy</label>
             </div>
             <button type="submit" class="btn submit">Add Toy</button>
+            {% endfor %}
           </form>
-          {% endif %}
+          {% comment %} {% endif %} {% endcomment %}
         </div>
       </div>
     </div>
