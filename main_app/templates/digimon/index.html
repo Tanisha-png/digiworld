@@ -1,4 +1,6 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} {% load static %} {% block head %}
+<link rel="stylesheet" href="{% static 'css/digimon/digimon-index.css' %}" />
+{% endblock %} {% block content %}
 
 <h1>Digimon List</h1>
 
@@ -23,8 +25,8 @@
         {% endif %}
         {% if user.digimon.count < 6 %}
         <form
-        action="{% url 'associate-digimon' user.id digimon.id %}"
-        method="post"
+          action="{% url 'associate-digimon' user.id digimon.id %}"
+          method="post"
           class="subsection-content"
           autocomplete="off"
         >
