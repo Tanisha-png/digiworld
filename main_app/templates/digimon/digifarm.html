@@ -1,5 +1,12 @@
 {% extends 'base.html' %} {% block content %}
 <div class="row">
+    {% if user.digimon.count >= 6 %}
+    <div class="col s12">
+        <div class="card-panel yellow lighten-4">
+            <span class="black-text">You already have 6 Digimon on your digifarm! That's the maximum allowed.</span>
+        </div>
+    </div>
+    {% endif %}
     {% for digimon in digifarm %}
     <div class="col s12 m6 l4">
       <div class="card">
@@ -12,6 +19,7 @@
           {% if digimon.happiness %}
           <p>Happiness: {{ digimon.happiness }}</p>
           {% endif %}
+          {% if user.digimon.count < 6 %}
           <form
           action="{% url 'associate-digimon' user.id digimon.id %}"
           method="post"
@@ -21,6 +29,7 @@
             {% csrf_token %} {{ feeding_form.as_p }}
             <button type="submit" class="btn submit">Add Digimon</button>
           </form>
+          {% endif %}
         </div>
       </div>
     </div>

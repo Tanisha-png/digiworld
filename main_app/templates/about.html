@@ -1,15 +1,36 @@
 {% extends 'base.html' %} {% block content %}
-<h1>About DigiWorld</h1>
-<hr />
-<p class="page-content">
-  <h2>Digimon Name</h2>
-  <h3>
-  <ul>
-    {% for digimon in digimon_list %}
-      <li>
-        {{ digimon.name }} ({{ digimon.level }})
-      </li>
-    {% endfor %}
-  </ul>
-</p>
+<div class="container">
+    <h1 class="center-align">About DigiWorld</h1>
+    <div class="card">
+        <div class="card-content">
+            <h4>Welcome to DigiWorld!</h4>
+            <p>
+                DigiWorld is your personal digital monster companion app where you can create and manage your very own DigiFarm. 
+                Here you can collect, nurture, and build bonds with up to 6 unique Digimon partners.
+            </p>
+            
+            <h5>What We Offer:</h5>
+            <ul class="browser-default">
+                <li>Create your personal DigiFarm with up to 6 Digimon companions</li>
+                <li>Choose from a diverse collection of Digimon across different levels</li>
+                <li>Track your Digimon's happiness and watch them thrive in your care</li>
+                <li>Build your dream team of digital companions</li>
+            </ul>
+
+            <h5>How It Works:</h5>
+            <p>
+                Browse our extensive collection of Digimon and select your favorites to add to your DigiFarm. 
+                Each Digimon comes with their own unique characteristics, level, and happiness meter. 
+                Take good care of your digital companions and watch as they become an integral part of your DigiWorld journey!
+            </p>
+
+            <div class="card-panel blue lighten-4">
+                <p class="black-text">
+                    <strong>Getting Started:</strong> Head over to our Digimon List to begin building your DigiFarm. 
+                    Remember, you can have up to 6 Digimon in your care at any time, so choose wisely!
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
