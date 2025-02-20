@@ -129,5 +129,10 @@ def associate_toy(request, digimon_id, toy_id):
 
 @login_required
 def remove_toy(request, digimon_id, toy_id):
-    Digimon.objects.get(id=digimon_id).toys.remove(toy_id)
-    return redirect('digifarm', digimon_id=digimon_id)
+    if request.method == 'POST':
+        digimon = Digimon.objects.get(id=digimon_id)
+        toy = Toy.objects.get(id=toy_id)
+        digifarm = UserDigifarm.objects.get(user=request.user, digimon=digimon)
+        digimontoy = DigimonToy.objects.get(user_digifarm_id=digifarm.id, toy=toy)
+        digimontoy.delete()
+        return redirect('digifarm', user_id=request.user.id)

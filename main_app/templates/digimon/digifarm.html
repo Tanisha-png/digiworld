@@ -60,6 +60,10 @@
                 {% csrf_token %}
                 <button type="submit" class="btn submit">Give Toy</button>
                </form>
+               <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
+                {% csrf_token %}
+                <button type="submit" class="btn-small red">Remove Toy</button>
+               </form>
             {% endfor %}
           </form>
         </div>
