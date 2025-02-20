@@ -24,6 +24,7 @@
       {% endif %}
       {% if user.is_authenticated %}
       {% if user.digimon.count < 6 %}
+      {% if digimon not in user.digimon.all %}
       <form
         action="{% url 'associate-digimon' user.id digimon.id %}"
         method="post"
@@ -33,6 +34,9 @@
         {% csrf_token %} {{ feeding_form.as_p }}
         <button type="submit" class="btnsubmit">Add Digimon</button>
       </form>
+      {% else %}
+      <p>You own this digimon</p>
+      {% endif %}
       {% endif %}
       {% else %}
       <p class="center-align">Please <a href="{% url 'home' %}">log in</a> to add Digimon to your digifarm!</p>
