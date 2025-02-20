@@ -16,37 +16,45 @@
     {% block head %} {% endblock %}
   </head>
   <body>
-    <header>
-      <div class="header-logo-container">
-        <a href="/">
-          <img src="{% static 'images/logo.jpg' %}" alt="The DigiWorld logo" style="width: 10%; height: auto;" />
-        </a>
-      </div>
-      <nav>
-        <ul>
-          {% if user.is_authenticated %}
-          <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
-          <li><a href="{% url 'digifarm' user.id %}">DigiFarm</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'toy-create' %}">Create a Toy</a></li>
-          <li><a href="{% url 'show-all-users' %}">View Our Community</a></li>
-          <li>
-            <form id="logout-form" method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit">Log Out</button>
-            </form>
-          </li>
-          <li>Welcome, {{request.user.username }}</li>
+    <div class="wrapper">
+      <header>
+        <div class="header-logo-container">
+          <a href="/">
+            <img src="{% static 'images/logo.jpg' %}" alt="The DigiWorld logo" style="width: 10%; height: auto;" />
+          </a>
+        </div>
+        <nav>
+          <ul>
+            {% if user.is_authenticated %}
+            <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
+            <li><a href="{% url 'digifarm' user.id %}">DigiFarm</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'toy-create' %}">Create a Power Up</a></li>
+            <li><a href="{% url 'show-all-users' %}">View Our Community</a></li>
+            <li>
+              <form id="logout-form" method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit">Log Out</button>
+              </form>
+            </li>
+            <li>Welcome, {{request.user.username }}</li>
             {% else %}
-          <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
-          <li><a href="{% url 'about' %}">About</a></li>
-          <li><a href="{% url 'home' %}">Log In</a></li>
-          <li><a href="{% url 'signup' %}">Sign Up</a></li>
-          {% endif %}
-        </ul>
-      </nav>
-    </header>
-    <main>{% block content %} {% endblock %}</main>
+            <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+            <li><a href="{% url 'home' %}">Log In</a></li>
+            <li><a href="{% url 'signup' %}">Sign Up</a></li>
+            {% endif %}
+          </ul>
+        </nav>
+      </header>
+      <main>{% block content %} {% endblock %}</main>
+    </div>
+    <footer>
+      <div class="footer-content">
+        <p>&copy; {% now "Y" %} DigiWorld. All rights reserved.</p>
+      </div>
+    </footer>
+
     <script>
       document.addEventListener('DOMContentLoaded', function() {
         var elems = document.querySelectorAll('select');
