@@ -28,6 +28,7 @@
           <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
           <li><a href="{% url 'digifarm' user.id %}">DigiFarm</a></li>
           <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'toy-create' %}">Create a Toy</a></li>
           <li>
             <form id="logout-form" method="post" action="{% url 'logout' %}">
               {% csrf_token %}
