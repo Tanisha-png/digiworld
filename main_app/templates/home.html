@@ -1,18 +1,31 @@
-{% extends 'base.html' %} {% load static %} {% block head %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}" />
-{% endblock %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
-<section class="logo-container">
-  <div class="image-container">
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}" />
+{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+  <div class="hero-content">
+    <h1>Build your own Digifarm</h1>
+    <h3>Join our tamers in collecting and raising your favorite Digimon partners!</h3>
+    <div class="button-container">
+      <a href="{% url 'about' %}"><button class="button-secondary">Learn More</button></a>
+      <a href="{% url 'digimon-index' %}"><button class="button-primary">Get Started</button></a>
+    </div>
+  </div>
+  <div class="preview-container">
     <img src="{% static 'images/logo.jpg' %}" alt="Picture Logo" />
   </div>
 </section>
-{% comment %} Login container {% endcomment %}
+
 {% if not user.is_authenticated %}
-<section>
+<section class="login-section">
   <form action="{% url 'home' %}" method="post" class="login">
     <h1>Login</h1>
-    {% csrf_token %} {{ form.as_p }}
+    {% csrf_token %}
+    {{ form.as_p }}
     <input type="hidden" name="next" value="{{ next }}" />
     <button type="submit" class="btn submit">Login</button>
   </form>

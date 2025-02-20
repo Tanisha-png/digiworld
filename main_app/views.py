@@ -121,7 +121,7 @@ class ToyUpdate(LoginRequiredMixin, UpdateView):
 
 class ToyDelete(LoginRequiredMixin, DeleteView):
     model = Toy
-    success_url = '/toys/'
+    success_url = '/powerups/'
 
 @login_required
 def associate_toy(request, digimon_id, toy_id):
