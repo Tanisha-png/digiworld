@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+
+{% for user in users%}
+<ul>
+    <li><a href="{% url 'digifarm' user.id %}">{{user}}</a></li>
+</ul>
+
+{% endfor %}
+{% endblock %}
