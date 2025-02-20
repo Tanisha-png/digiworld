@@ -138,3 +138,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_URL = 'home'
 LOGIN_REDIRECT_URL = 'digimon-index'
 LOGOUT_REDIRECT_URL = 'home'
+
+import django_on_heroku
+django_on_heroku.settings(locals(), databases=False)
