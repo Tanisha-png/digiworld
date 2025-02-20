@@ -51,7 +51,7 @@
               <p>No toys yet!</p>
             {% endif %}
           </div>
-          {% comment %} {% if request.user == user %} {% endcomment %}
+          {% if request.user == user %}
           
             <div class="input-field">
               <h3>Available Toys</h3>
@@ -82,6 +82,7 @@
         </div>
       </div>
     </div>
+    {% endif %}
     {% empty %}
     <h3>No Digimon have been added yet!</h3>
     {% endfor %}

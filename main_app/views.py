@@ -142,5 +142,7 @@ def remove_toy(request, digimon_id, toy_id):
         digimontoy.delete()
         return redirect('digifarm', user_id=request.user.id)
 
-def show_all_users ():
-    pass
+def show_all_users(request):
+    users = User.objects.all()
+    return render(request, 'community.html', {'users': users})
+    # return render(request, 'digimon/index.html', {'digimon': digimon})
