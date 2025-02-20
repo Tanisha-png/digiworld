@@ -13,6 +13,7 @@ urlpatterns = [
   path('user/<int:user_id>/digifarm/', views.digifarm, name='digifarm'),  
   path('user/<int:user_id>/digifarm/<int:digimon_id>/associate-digimon/', views.associate_digimon, name='associate-digimon'),
   path('user/<int:user_id>/digifarm/<int:digimon_id>/remove-digimon/', views.remove_digimon, name='remove-digimon'),
+  path('users/', views.show_all_users, name='show-all-users'),
   # Toys
   path('toys/', views.ToyList.as_view(), name='toy-index'),
   path('toys/create/', views.ToyCreate.as_view(), name='toy-create'),

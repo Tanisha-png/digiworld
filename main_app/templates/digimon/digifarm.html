@@ -57,23 +57,27 @@
               <h3>Available Toys</h3>
               <div class="subsection-content">
               {% for toy in toys %}
+              {% if toy not in digimon.given_toys %}
                 <div class="toy-container">
                 <div
                 class="color-block"
                 style="background-color: {{ toy.color }}"
                 ></div>
                 <p>{{ toy.color }} {{ toy.name }}</p>
+                {% else %}
+                {% endif%}
                 {% if toy not in digimon.given_toys %}
                 <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn submit">Give Toy</button>
-               </form>
-               {% endif %}
-               {% comment %} <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
-                {% csrf_token %}
-                <button type="submit" class="btn-small red">Remove Toy</button>
-               </form> {% endcomment %}
-            {% endfor %}
+                  {% csrf_token %}
+                  <button type="submit" class="btn submit">Give Toy</button>
+                </form>
+                {% endif %}
+                {% comment %} <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
+                  {% csrf_token %}
+                  <button type="submit" class="btn-small red">Remove Toy</button>
+                  </form> {% endcomment %}
+                  {% endfor %}
+                  <a href="{% url 'toy-create' %}"><button>Create a Toy</button></a>
           </form>
         </div>
       </div>

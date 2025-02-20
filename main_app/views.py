@@ -57,10 +57,10 @@ def associate_digimon(request, user_id, digimon_id):
             return redirect('digifarm', user_id=user_id)
         digimon.user.add(user)
         userdigifarm = UserDigifarm.objects.create(user=user, digimon=digimon)
-        return redirect('digifarm', user_id=user_id)
+        return redirect('digimon-index')
     except ValidationError as e:
         # Handle the validation error
-        return redirect('digifarm', user_id=user_id)
+        return redirect('digimon-index')
 
 @login_required
 def remove_digimon(request, user_id, digimon_id):
@@ -77,9 +77,12 @@ def digifarm(request, user_id ):
     digifarm = user.digimon.all()
     toys = Toy.objects.all()
     for digimon in digifarm:
-        user_digifarm = UserDigifarm.objects.get(user=user, digimon=digimon)
-        digimon_toys = DigimonToy.objects.filter(user_digifarm=user_digifarm)
-        digimon.given_toys = [dt.toy for dt in digimon_toys]
+        user_digifarm = UserDigifarm.objects.filter(user=user, digimon=digimon).first()
+        if user_digifarm:
+            digimon_toys = DigimonToy.objects.filter(user_digifarm=user_digifarm)
+            digimon.given_toys = [dt.toy for dt in digimon_toys]
+        else:
+            digimon.given_toys = []
     return render(request, 'digimon/digifarm.html', {
         'digifarm': digifarm,
         'user': user,
@@ -138,3 +141,6 @@ def remove_toy(request, digimon_id, toy_id):
         digimontoy = DigimonToy.objects.get(user_digifarm_id=digifarm.id, toy=toy)
         digimontoy.delete()
         return redirect('digifarm', user_id=request.user.id)
+
+def show_all_users ():
+    pass
