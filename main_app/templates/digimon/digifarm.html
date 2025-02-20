@@ -19,6 +19,17 @@
           {% if digimon.happiness %}
           <p>Happiness: {{ digimon.happiness }}</p>
           {% endif %}
+
+          <form
+          action="{% url 'remove-digimon' user.id digimon.id %}"
+          method="post"
+            class="subsection-content"
+            autocomplete="off"
+          >
+            {% csrf_token %} 
+            <button type="submit" class="btn submit">Remove Digimon</button>
+          </form>
+
           <div class="toys-section">
             <h6>Toys Given:</h6>
             {% if digimon.given_toys %}
@@ -29,6 +40,10 @@
                       <div class="color-block" style="background-color: {{ toy.color }}; width: 20px; height: 20px; display: inline-block; margin-right: 10px;"></div>
                       {{ toy.name }}
                     </div>
+                    <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn-small red">Remove Toy</button>
+                     </form>
                   </li>
                 {% endfor %}
               </ul>
@@ -37,15 +52,7 @@
             {% endif %}
           </div>
           {% comment %} {% if request.user == user %} {% endcomment %}
-          <form
-          action="{% url 'remove-digimon' user.id digimon.id %}"
-          method="post"
-            class="subsection-content"
-            autocomplete="off"
-          >
-            {% csrf_token %} 
-            <button type="submit" class="btn submit">Remove Digimon</button>
-          </form>
+          
             <div class="input-field">
               <h3>Available Toys</h3>
               <div class="subsection-content">
@@ -56,14 +63,16 @@
                 style="background-color: {{ toy.color }}"
                 ></div>
                 <p>{{ toy.color }} {{ toy.name }}</p>
+                {% if toy not in digimon.given_toys %}
                 <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn submit">Give Toy</button>
                </form>
-               <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
+               {% endif %}
+               {% comment %} <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
                 {% csrf_token %}
                 <button type="submit" class="btn-small red">Remove Toy</button>
-               </form>
+               </form> {% endcomment %}
             {% endfor %}
           </form>
         </div>
@@ -74,3 +83,4 @@
     {% endfor %}
   </div>
 {% endblock %}
+
