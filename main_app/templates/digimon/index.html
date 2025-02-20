@@ -23,6 +23,7 @@
       <p>Happiness: {{ digimon.happiness }}</p>
       {% endif %}
       {% if user.is_authenticated %}
+      {% if user.digimon.count < 6 %}
       <form
         action="{% url 'associate-digimon' user.id digimon.id %}"
         method="post"
@@ -32,6 +33,7 @@
         {% csrf_token %} {{ feeding_form.as_p }}
         <button type="submit" class="btnsubmit">Add Digimon</button>
       </form>
+      {% endif %}
       {% else %}
       <p class="center-align">Please <a href="{% url 'home' %}">log in</a> to add Digimon to your digifarm!</p>
       {% endif %}
