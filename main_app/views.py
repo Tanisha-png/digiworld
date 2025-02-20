@@ -86,6 +86,8 @@ def digifarm(request, user_id ):
         'toys': toys
     })
 
+
+
 def signup(request):
     error_message = ''
     if request.method == 'POST':
