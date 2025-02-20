@@ -19,6 +19,23 @@
           {% if digimon.happiness %}
           <p>Happiness: {{ digimon.happiness }}</p>
           {% endif %}
+          <div class="toys-section">
+            <h6>Toys Given:</h6>
+            {% if digimon.given_toys %}
+              <ul class="collection">
+                {% for toy in digimon.given_toys %}
+                  <li class="collection-item">
+                    <div class="toy-item">
+                      <div class="color-block" style="background-color: {{ toy.color }}; width: 20px; height: 20px; display: inline-block; margin-right: 10px;"></div>
+                      {{ toy.name }}
+                    </div>
+                  </li>
+                {% endfor %}
+              </ul>
+            {% else %}
+              <p>No toys yet!</p>
+            {% endif %}
+          </div>
           {% comment %} {% if request.user == user %} {% endcomment %}
           <form
           action="{% url 'remove-digimon' user.id digimon.id %}"
@@ -43,10 +60,6 @@
                 {% csrf_token %}
                 <button type="submit" class="btn submit">Give Toy</button>
                </form>
-            </div>
-              <label>Select Toy</label>
-            </div>
-            <button type="submit" class="btn submit">Add Toy</button>
             {% endfor %}
           </form>
         </div>

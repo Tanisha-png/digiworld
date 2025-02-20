@@ -62,6 +62,7 @@ def associate_digimon(request, user_id, digimon_id):
         # Handle the validation error
         return redirect('digifarm', user_id=user_id)
 
+@login_required
 def remove_digimon(request, user_id, digimon_id):
     user = request.user
     digimon = Digimon.objects.get(id=digimon_id)
@@ -70,21 +71,21 @@ def remove_digimon(request, user_id, digimon_id):
     userdigifarm.delete()
     return redirect('digifarm', user_id=user_id)
 
+@login_required
 def digifarm(request, user_id ):
     user = User.objects.get(id=user_id)
     digifarm = user.digimon.all()
     toys = Toy.objects.all()
-    print(toys)
+    for digimon in digifarm:
+        user_digifarm = UserDigifarm.objects.get(user=user, digimon=digimon)
+        digimon_toys = DigimonToy.objects.filter(user_digifarm=user_digifarm)
+        digimon.given_toys = [dt.toy for dt in digimon_toys]
     return render(request, 'digimon/digifarm.html', {
         'digifarm': digifarm,
         'user': user,
         'toys': toys
     })
 
-# def remove_toy(request, cat_id, toy_id):
-#   Cat.objects.get(id=cat_id).toys.remove(toy_id)
-#   return redirect('cat-detail', cat_id=cat_id)
-  
 def signup(request):
     error_message = ''
     if request.method == 'POST':
@@ -117,14 +118,16 @@ class ToyDelete(LoginRequiredMixin, DeleteView):
     model = Toy
     success_url = '/toys/'
 
+@login_required
 def associate_toy(request, digimon_id, toy_id):
     if request.method == 'POST':
-      digimon = Digimon.objects.get(id=digimon_id)
-      toy = Toy.objects.get(id=toy_id)
-      digifarm = UserDigifarm.objects.get(user=request.user, digimon=digimon)
-      DigimonToy.objects.create(user_digifarm_id=digifarm.id, toy=toy)
-      return redirect('digifarm', user_id=request.user.id)
+        digimon = Digimon.objects.get(id=digimon_id)
+        toy = Toy.objects.get(id=toy_id)
+        digifarm = UserDigifarm.objects.get(user=request.user, digimon=digimon)
+        DigimonToy.objects.create(user_digifarm_id=digifarm.id, toy=toy)
+        return redirect('digifarm', user_id=request.user.id)
 
+@login_required
 def remove_toy(request, digimon_id, toy_id):
     Digimon.objects.get(id=digimon_id).toys.remove(toy_id)
     return redirect('digifarm', digimon_id=digimon_id)
