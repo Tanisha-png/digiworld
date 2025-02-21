@@ -29,12 +29,7 @@
         <p>Happiness: {{ digimon.happiness }}</p>
         {% endif %}
         
-        {% if request.user == user %}
-        <form action="{% url 'remove-digimon' user.id digimon.id %}" method="post" class="subsection-content">
-          {% csrf_token %} 
-          <button type="submit" class="btn submit">Remove Digimon</button>
-        </form>
-        {% endif %}
+       
 
         <div class="toys-section">
           <h6>Power Ups:</h6>
@@ -48,7 +43,7 @@
                     {% if request.user == user %}
                     <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post" class="inline-form">
                       {% csrf_token %}
-                      <button type="submit" class="btn-small red">Remove Power Up</button>
+                      <button type="submit" class="btn-remove-power">Remove Power Up</button>
                     </form>
                     {% endif %}
                   </div>
@@ -72,6 +67,8 @@
                       {% csrf_token %}
                       <button type="submit" class="btn submit">Give Power Up</button>
                     </form>
+                    <a href="{% url 'toy-detail' toy.id %}"><button type="" class="btn-edit">Edit Power Up</button></a>
+
                   </div>
                 {% endif %}
               {% endfor %}
@@ -79,9 +76,18 @@
             <div class="create-toy-btn">
               <a href="{% url 'toy-create' %}" class="btn">Create Power Up</a>
             </div>
+
+           
           </div>
           {% endif %}
+         
         </div>
+        {% if request.user == user %}
+        <form action="{% url 'remove-digimon' user.id digimon.id %}" method="post" class="subsection-content">
+          {% csrf_token %} 
+          <button type="submit" class="btn-remove">Remove Digimon</button>
+        </form>
+        {% endif %}
       </div>
     </div>
   </div>
