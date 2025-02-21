@@ -1,3 +1,22 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.titleName {
+  background: linear-gradient(to right, rgb(215, 112, 215), rgb(129, 10, 101));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+  padding-bottom: 5px;
+  animation: fadeIn 1.2s ease-in-out;
+  text-align: center;
+  font-size: 48px;
+  margin: 50px 0 0 0;
+}
+
 .row {
   display: flex;
   justify-content: center;
