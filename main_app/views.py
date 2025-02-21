@@ -38,7 +38,7 @@ def about(request):
 
 def digimon_index(request):
     digimon_list = Digimon.objects.all()
-    paginator = Paginator(digimon_list, 25)  # Show 25 digimon per page
+    paginator = Paginator(digimon_list, 24)  # Show 25 digimon per page
     page_number = request.GET.get('page')
     digimon = paginator.get_page(page_number)
     return render(request, 'digimon/index.html', {'digimon': digimon})
