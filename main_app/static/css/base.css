@@ -48,7 +48,6 @@ body {
   --font-l: 1.8rem;
   --font-reg: 1.6rem;
   --card-border-radius: 6px;
-  padding-top: 120px;
 }
 
 /* Pagination Styling */
@@ -170,7 +169,6 @@ nav li {
 
 main {
   width: 100%;
-  padding: 0 10px;
 }
 
 h2 {
@@ -282,6 +280,27 @@ footer p {
   color: #666;
 }
 
+@media screen and (max-width: 768px) {
+  header {
+    position: relative;
+  }
+  main {
+    padding-top: 2rem;
+  }
+  nav ul {
+    flex-direction: column;
+    padding: 1rem;
+  }
+  nav li {
+    margin: 0.5rem 0;
+  }
+  .header-logo-container {
+    text-align: left;
+    margin: 0 0 0 10px;
+    padding: 1rem 0;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   header {
     position: sticky;
@@ -290,10 +309,11 @@ footer p {
     top: 0;
     align-items: center;
   }
-
+  
   main {
     max-width: 1300px;
     min-height: calc(100vh - 53px);
+    /* padding: 150px 10px 0px; */
   }
 
   nav,
