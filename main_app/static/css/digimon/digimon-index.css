@@ -50,7 +50,7 @@ h1 {
 
 .card-image {
   width: 100%;
-  height: 200px; /* Bigger image display */
+  height: 250px; /* Bigger image display */
   display: flex;
   align-items: center;
   justify-content: center;
