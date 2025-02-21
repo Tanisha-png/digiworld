@@ -24,7 +24,7 @@
           </a>
         </div>
         <nav>
-          <ul>
+          <ul class="menu">
             {% if user.is_authenticated %}
             <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
             <li><a href="{% url 'digifarm' user.id %}">DigiFarm</a></li>
