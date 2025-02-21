@@ -10,8 +10,8 @@
 
 ## :camera: Homepage
 ![Screenshots of DigiWorld Homepage](https://i.imgur.com/tzMKARk.png)
-## :camera: Digimon List
-![Screenshots of Digimon list page](https://i.imgur.com/S9pjeXa.png)
+## :camera: Digimon Database
+![Screenshots of Digimon Database page](https://i.imgur.com/S9pjeXa.png)
 ## :camera: DigiFarm Page
 ![Screenshots of DigiFarm page](https://i.imgur.com/aLPflWj.png)
 
