@@ -21,7 +21,7 @@
         <nav>
           <ul class="menu">
             <a href="/">
-              <img src="{% static 'images/logo.jpg' %}" alt="The DigiWorld logo" style="width: 10%; height: auto;" />
+              <img src="{% static 'images/logo.jpg' %}" alt="The DigiWorld logo" style="width: 10%; margin: 5px; border-radius: 6px; height: auto;" />
             </a>
             {% if user.is_authenticated %}
             <li><a href="{% url 'digimon-index' %}">All Digimon</a></li>
