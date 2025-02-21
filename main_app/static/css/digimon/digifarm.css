@@ -13,16 +13,26 @@ h1 {
   margin: 10px;
   border: var(--borders);
   box-shadow: var(--card-box-shadow);
+  position: relative;
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  z-index: 1;
 }
 
 .card-image {
   position: relative;
   overflow: hidden;
+  transform: translate3d(0,0,0);
+  -webkit-transform: translate3d(0,0,0);
+  z-index: 1;
 }
 
 .card-image img {
   width: 100%;
   border-radius: var(--card-border-radius);
+  transform: translateZ(0);
+  -webkit-transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .card-content {
