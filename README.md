@@ -1,4 +1,4 @@
-# <p style="text-align:center;">**DigiWorld**</p>
+# <p style="text-align:center;">🐲 **DigiWorld** 🐲</p>
 ## <p style="text-align:center;">[Click here to demo!](https://digiworld-7531dba8c2f8.herokuapp.com/)</p>
 
 ## :mag: Description 
@@ -9,11 +9,11 @@
 ### Join the DigiWorld community today!
 
 ## :camera: Homepage
-![Screenshots of PopTaco Homepage](https://i.imgur.com/5pCBKMc.png)
-## :camera: Taco Stand List
-![Screenshots of PopTaco Taco Stand list page](https://i.imgur.com/JY2I24q.png)
-## :camera: Taco Stand Info Page
-![Screenshots of PopTaco Taco Stand info page](https://i.imgur.com/H91PsVa.png)
+![Screenshots of DigiWorld Homepage](https://i.imgur.com/tzMKARk.png)
+## :camera: Digimon List
+![Screenshots of Digimon list page](https://i.imgur.com/S9pjeXa.png)
+## :camera: DigiFarm Page
+![Screenshots of DigiFarm page](https://i.imgur.com/aLPflWj.png)
 
 
 ## :computer: Technologies Used
