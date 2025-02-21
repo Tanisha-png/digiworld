@@ -29,6 +29,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
+  position: relative;
   --nav-bg: rgba(104, 197, 248, 0.7);
   --nav-bg-ff: rgba(104, 197, 248, 0.9);
   --borders: rgb(36, 116, 248) solid 2px;
@@ -47,6 +48,89 @@ body {
   --font-l: 1.8rem;
   --font-reg: 1.6rem;
   --card-border-radius: 6px;
+  padding-top: 120px;
+}
+
+/* Pagination Styling */
+.center-align {
+  text-align: center;
+  margin: 30px 0;
+}
+
+.pagination {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+.pagination li {
+  display: inline;
+  margin: 0 5px;
+}
+
+.pagination li a,
+.pagination li span {
+  display: inline-block;
+  padding: 12px 24px;
+  text-decoration: none;
+  border: var(--borders);
+  border-radius: var(--card-border-radius);
+  color: var(--text-color);
+  font-size: var(--font-l);
+  font-weight: 600;
+  background-color: white;
+}
+
+.pagination li.active span {
+  background-color: var(--nav-bg);
+  color: white;
+}
+
+.pagination li a:hover {
+  background-color: var(--nav-bg);
+  color: white;
+  transition: all 0.2s ease;
+}
+
+.page-navigation {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  width: 100% !important;
+  padding: 30px 0 !important;
+}
+
+.page-links {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  gap: 10px !important;
+}
+
+.page-link {
+  padding: 12px 24px !important;
+  text-decoration: none !important;
+  color: rgb(17, 20, 17) !important;
+  border: 2px solid rgb(36, 116, 248) !important;
+  border-radius: 6px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
+  background-color: white !important;
+  transition: all 0.2s ease !important;
+}
+
+.page-link:hover {
+  background-color: rgb(36, 116, 248) !important;
+  color: white !important;
+}
+
+.page-current {
+  padding: 12px 24px !important;
+  background-color: rgb(36, 116, 248) !important;
+  color: white !important;
+  border-radius: 6px !important;
+  font-size: 18px !important;
+  font-weight: 600 !important;
 }
 
 .wrapper {
@@ -56,22 +140,35 @@ body {
 
 header {
   width: 100%;
-  background: var(--nav-bg-ff); /* rgba(104, 197, 248, .9) */
+  background: var(--nav-bg-ff);
   border-bottom: var(--borders);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 2147483647;
 }
 
 nav {
   margin: 10px;
 }
 
-ul {
+nav ul {
   margin: 0;
   list-style: none;
   padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav li {
+  padding: 5px 8px;
+  list-style: none;
 }
 
 main {
-  flex: 1;
   width: 100%;
   padding: 0 10px;
 }
@@ -89,17 +186,6 @@ nav a {
 
 nav a:hover {
   color: var(--link-hover-color);
-}
-
-nav ul {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-}
-
-nav li {
-  padding: 5px 8px;
 }
 
 .header-logo-container {

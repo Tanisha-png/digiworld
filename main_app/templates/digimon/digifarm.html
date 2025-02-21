@@ -1,93 +1,93 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% load static %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/digimon/digifarm.css' %}" />
+{% endblock %}
+
+{% block content %}
+
+<h1>My Digifarm</h1>
+
+{% if user.digimon.count >= 6 %}
+<div class="card-panel yellow lighten-4">
+    <span class="black-text">You already have 6 Digimon on your digifarm! That's the maximum allowed.</span>
+</div>
+{% endif %}
+
 <div class="row">
-    {% if user.digimon.count >= 6 %}
-    <div class="col s12">
-        <div class="card-panel yellow lighten-4">
-            <span class="black-text">You already have 6 Digimon on your digifarm! That's the maximum allowed.</span>
-        </div>
-    </div>
-    {% endif %}
-    {% for digimon in digifarm %}
-    <div class="col s12 m6 l4">
-      <div class="card">
-        <div class="card-image">
-          <img src="{{ digimon.img }}" alt="{{ digimon.name }}" />
-        </div>
-        <div class="card-content">
-          <span class="card-title">{{ digimon.name }}</span>
-          <p>Level: {{ digimon.level }}</p>
-          {% if digimon.happiness %}
-          <p>Happiness: {{ digimon.happiness }}</p>
-          {% endif %}
-          {% if request.user == user %}
-          <form
-          action="{% url 'remove-digimon' user.id digimon.id %}"
-          method="post"
-            class="subsection-content"
-            autocomplete="off"
-          >
-            {% csrf_token %} 
-            <button type="submit" class="btn submit">Remove Digimon</button>
-          </form>
-          {% endif %}
-          <div class="toys-section">
-            <h6>Power Ups Given:</h6>
-            {% if digimon.given_toys %}
-              <ul class="collection">
-                {% for toy in digimon.given_toys %}
-                  <li class="collection-item">
-                    <div class="toy-item">
-                      <div class="color-block" style="background-color: {{ toy.color }}; width: 20px; height: 20px; display: inline-block; margin-right: 10px;"></div>
-                      {{ toy.name }}
-                    </div>
+  {% for digimon in digifarm %}
+  <div class="col s12 m6 l4">
+    <div class="card">
+      <div class="card-image">
+        <img src="{{ digimon.img }}" alt="{{ digimon.name }}" />
+      </div>
+      <div class="card-content">
+        <span class="card-title">{{ digimon.name }}</span>
+        <p>Level: {{ digimon.level }}</p>
+        {% if digimon.happiness %}
+        <p>Happiness: {{ digimon.happiness }}</p>
+        {% endif %}
+        
+        {% if request.user == user %}
+        <form action="{% url 'remove-digimon' user.id digimon.id %}" method="post" class="subsection-content">
+          {% csrf_token %} 
+          <button type="submit" class="btn submit">Remove Digimon</button>
+        </form>
+        {% endif %}
+
+        <div class="toys-section">
+          <h6>Power Ups:</h6>
+          {% if digimon.given_toys %}
+            <div class="collection">
+              {% for toy in digimon.given_toys %}
+                <div class="collection-item">
+                  <div class="toy-item">
+                    <div class="color-block" style="background-color: {{ toy.color }}"></div>
+                    <span>{{ toy.name }}</span>
                     {% if request.user == user %}
-                    <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
+                    <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post" class="inline-form">
                       {% csrf_token %}
-                      <button type="submit" class="btn-small red">Remove Toy</button>
-                     </form>
+                      <button type="submit" class="btn-small red">Remove Power Up</button>
+                    </form>
                     {% endif %}
-                  </li>
-                {% endfor %}
-              </ul>
-            {% else %}
-              <p>No Power Ups yet!</p>
-            {% endif %}
-          </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+          {% else %}
+            <p>No Power Ups yet!</p>
+          {% endif %}
+
           {% if request.user == user %}
-          
-            <div class="input-field">
-              <h3>Available Power Ups</h3>
-              <div class="subsection-content">
+          <div class="available-toys">
+            <h6>Available Power Ups:</h6>
+            <div class="toy-grid">
               {% for toy in toys %}
-              {% if toy not in digimon.given_toys %}
-                <div class="toy-container">
-                <div
-                class="color-block"
-                style="background-color: {{ toy.color }}"
-                ></div>
-                <p>{{ toy.color }} {{ toy.name }}</p>
-                {% else %}
-                {% endif%}
                 {% if toy not in digimon.given_toys %}
-                <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
-                  {% csrf_token %}
-                  <button type="submit" class="btn submit">Give Toy</button>
-                </form>
+                  <div class="toy-item">
+                    <div class="color-block" style="background-color: {{ toy.color }}"></div>
+                    <span>{{ toy.name }}</span>
+                    <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
+                      {% csrf_token %}
+                      <button type="submit" class="btn submit">Give Power Up</button>
+                    </form>
+                  </div>
                 {% endif %}
-                {% comment %} <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post">
-                  {% csrf_token %}
-                  <button type="submit" class="btn-small red">Remove Toy</button>
-                  </form> {% endcomment %}
-                  {% endfor %}
-                  <a href="{% url 'toy-create' %}"><button>Create a Toy</button></a>
-          </form>
+              {% endfor %}
+            </div>
+            <div class="create-toy-btn">
+              <a href="{% url 'toy-create' %}" class="btn">Create Power Up</a>
+            </div>
+          </div>
+          {% endif %}
         </div>
       </div>
     </div>
-    {% endif %}
-    {% empty %}
-    <h3>No Digimon have been added yet!</h3>
-    {% endfor %}
   </div>
-{% endblock %}
+  {% empty %}
+  <h3>No Digimon have been added yet!</h3>
+  {% endfor %}
+</div>
 
+{% endblock %}
