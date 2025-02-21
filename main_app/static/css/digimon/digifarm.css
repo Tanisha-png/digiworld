@@ -1,0 +1,128 @@
+.row {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+h1 {
+  text-align: center;
+}
+
+.card {
+  width: auto;
+  margin: 10px;
+  border: var(--borders);
+  box-shadow: var(--card-box-shadow);
+}
+
+.card-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-image img {
+  width: 100%;
+  border-radius: var(--card-border-radius);
+}
+
+.card-content {
+  padding: 10px;
+  width: 100%;
+}
+
+.card-title {
+  color: darkblue;
+  margin: 10px 0;
+  font-size: var(--font-xl);
+}
+
+.card p {
+  margin: 5px 0;
+  font-size: var(--font-reg);
+}
+
+.toys-section {
+  margin-top: 15px;
+}
+
+.toy-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 8px 0;
+  padding: 8px;
+  background-color: var(--button-bg);
+  border-radius: var(--card-border-radius);
+}
+
+.color-block {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+}
+
+.toy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.available-toys {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: var(--button-bg);
+  border-radius: var(--card-border-radius);
+}
+
+.create-toy-btn {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.inline-form {
+  margin-left: auto;
+}
+
+.btn {
+  margin: 5px;
+  background-color: var(--button-bg);
+  border: 1px solid var(--secondary);
+  border-radius: var(--card-border-radius);
+  padding: 4px 8px;
+  font-size: var(--font-reg);
+}
+
+.btn:hover {
+  background-color: var(--button-bg-hover);
+}
+
+.btn.submit {
+  background-color: var(--submit);
+  color: white;
+  border: none;
+}
+
+.btn-small.red {
+  background-color: var(--danger);
+  color: white;
+  border: none;
+  font-size: var(--font-reg);
+  padding: 2px 6px;
+  border-radius: var(--card-border-radius);
+}
+
+.collection {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.collection-item {
+  padding: 5px 0;
+}
+
+.card-panel {
+  margin: 20px;
+  text-align: center;
+}

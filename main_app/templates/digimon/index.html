@@ -1,5 +1,47 @@
 {% extends 'base.html' %} {% load static %} {% block head %}
 <link rel="stylesheet" href="{% static 'css/digimon/digimon-index.css' %}" />
+<style>
+  .page-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    padding: 30px 0;
+  }
+
+  .page-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .page-link {
+    padding: 12px 24px;
+    text-decoration: none;
+    color: rgb(17, 20, 17);
+    border: 2px solid rgb(36, 116, 248);
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+    background-color: white;
+    transition: all 0.2s ease;
+  }
+
+  .page-link:hover {
+    background-color: rgb(36, 116, 248);
+    color: white;
+  }
+
+  .page-current {
+    padding: 12px 24px;
+    background-color: rgb(36, 116, 248);
+    color: white;
+    border-radius: 6px;
+    font-size: 18px;
+    font-weight: 600;
+  }
+</style>
 {% endblock %} {% block content %}
 
 <h1>Digimon List</h1>
@@ -48,22 +90,20 @@
   {% endfor %}
 </div>
 
-<div class="pagination center-align">
-    <ul class="pagination">
+<div class="page-navigation">
+    <div class="page-links">
         {% if digimon.has_previous %}
-            <li class="waves-effect"><a href="?page=1">&laquo; First</a></li>
-            <li class="waves-effect"><a href="?page={{ digimon.previous_page_number }}">&lsaquo; Previous</a></li>
+            <a href="?page=1" class="page-link">&laquo; First</a>
+            <a href="?page={{ digimon.previous_page_number }}" class="page-link">&lsaquo; Previous</a>
         {% endif %}
 
-        <li class="active">
-            <span>Page {{ digimon.number }} of {{ digimon.paginator.num_pages }}</span>
-        </li>
+        <span class="page-current">Page {{ digimon.number }} of {{ digimon.paginator.num_pages }}</span>
 
         {% if digimon.has_next %}
-            <li class="waves-effect"><a href="?page={{ digimon.next_page_number }}">Next &rsaquo;</a></li>
-            <li class="waves-effect"><a href="?page={{ digimon.paginator.num_pages }}">Last &raquo;</a></li>
+            <a href="?page={{ digimon.next_page_number }}" class="page-link">Next &rsaquo;</a>
+            <a href="?page={{ digimon.paginator.num_pages }}" class="page-link">Last &raquo;</a>
         {% endif %}
-    </ul>
+    </div>
 </div>
 
 {% endblock %}

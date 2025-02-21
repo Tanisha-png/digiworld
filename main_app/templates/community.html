@@ -1,9 +1,28 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %}
+{% load static %}
 
-{% for user in users%}
-<ul>
-    <li><a href="{% url 'digifarm' user.id %}">{{user}}</a></li>
-</ul>
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/community.css' %}" />
+{% endblock %}
 
-{% endfor %}
+{% block content %}
+<section class="community-section">
+    <div class="community-header">
+        <h1>Our Community</h1>
+    </div>
+    
+    <div class="community-content">
+        <ul class="community-list">
+            {% for user in users %}
+                <li>
+                    <a href="{% url 'digifarm' user.id %}">{{ user }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+        <div class="info-panel">
+            <p>Click on any trainer's name to visit their DigiFarm and see their Digimon collection!</p>
+        </div>
+    </div>
+</section>
 {% endblock %}
