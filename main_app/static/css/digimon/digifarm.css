@@ -22,6 +22,9 @@ h1 {
 } */
 
 .card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   width: 300px; /* Slightly bigger width */
   background: #ffffff;
   border-radius: 16px;
@@ -30,6 +33,7 @@ h1 {
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   padding-bottom: 24px; /* More inner spacing */
+
 }
 
 .card-image {
@@ -148,10 +152,12 @@ h1 {
 }
 
 .btn-remove {
+  display: flex;
+  justify-content: center;
   background-color: red;
   color: white;
   border: none;
-  font-size: 13px;
+  font-size: 15px;
   padding: 3px 7px;
   border-radius: var(--card-border-radius);
   font-weight: bold;
@@ -183,3 +189,11 @@ h1 {
   margin: 20px;
   text-align: center;
 }
+
+.subsection-content {
+display: flex;
+justify-content: center;
+/* align-items: center; */
+margin-top: 20px;
+}
+

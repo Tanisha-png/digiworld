@@ -7,7 +7,7 @@
 
 {% block content %}
 
-<h1>My Digifarm</h1>
+<h1>My DigiFarm</h1>
 
 {% if user.digimon.count >= 6 %}
 <div class="card-panel yellow lighten-4">
@@ -17,7 +17,7 @@
 
 <div class="row">
   {% for digimon in digifarm %}
-  <div class="col s12 m6 l4">
+  <div>
     <div class="card">
       <div class="card-image">
         <img src="{{ digimon.img }}" alt="{{ digimon.name }}" />
@@ -32,14 +32,14 @@
        
 
         <div class="toys-section">
-          <h6>Power Ups:</h6>
+          <h3>Power Ups:</h3>
           {% if digimon.given_toys %}
             <div class="collection">
               {% for toy in digimon.given_toys %}
                 <div class="collection-item">
                   <div class="toy-item">
                     <div class="color-block" style="background-color: {{ toy.color }}"></div>
-                    <span>{{ toy.name }}</span>
+                    <span style="font-size: 15px">{{ toy.name }}</span>
                     {% if request.user == user %}
                     <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post" class="inline-form">
                       {% csrf_token %}
@@ -56,13 +56,13 @@
 
           {% if request.user == user %}
           <div class="available-toys">
-            <h6>Available Power Ups:</h6>
+            <h3>Available Power Ups:</h3>
             <div class="toy-grid">
               {% for toy in toys %}
                 {% if toy not in digimon.given_toys %}
                   <div class="toy-item">
                     <div class="color-block" style="background-color: {{ toy.color }}"></div>
-                    <span>{{ toy.name }}</span>
+                    <span style="font-size: 15px">{{ toy.name }}</span>
                     <form action="{% url 'associate-toy' digimon.id toy.id %}" method="post">
                       {% csrf_token %}
                       <button type="submit" class="btn submit">Give Power Up</button>
