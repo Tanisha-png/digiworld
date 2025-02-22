@@ -31,8 +31,8 @@ body {
     'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
     'Helvetica Neue', sans-serif;
   position: relative;
-  --nav-bg: rgba(104, 197, 248, 0.7);
-  --nav-bg-ff: rgba(104, 197, 248, 0.9);
+  --nav-bg: rgba(215, 112, 215, 0.7);
+  --nav-bg-ff: rgba(215, 112, 215, 0.9);
   --text-color: rgb(17, 20, 17);
   --link-hover-color: rgb(16, 56, 158);
   --button-bg: rgb(245, 245, 245);
@@ -150,10 +150,6 @@ header {
   z-index: 2147483647;
 }
 
-nav {
-  margin: 10px;
-}
-
 nav ul {
   margin: 0;
   list-style: none;
@@ -170,11 +166,9 @@ nav li {
 }
 
 main {
-  flex: 1;
-  max-width: 100%;
+  flex: 5;
   margin: 0 auto;
   padding: 0 20px;
-  width: 100%;
 }
 
 h2 {
@@ -292,6 +286,7 @@ footer p {
   cursor: pointer;
   padding: 10px;
   z-index: 100;
+  right: 10px;
 }
 
 .hamburger span {
@@ -316,6 +311,7 @@ footer p {
   }
   nav li {
     margin: 0.5rem 0;
+    font-size: 2em;
   }
   .header-container{
     display: flex;
@@ -332,6 +328,9 @@ footer p {
   .hamburger {
     display: block;
     text-align: right;
+    position: absolute;
+    top: 6px;
+    right: 15px;
   }
 
   nav {
@@ -340,23 +339,27 @@ footer p {
     right: -100%;
     width: 70%;
     height: 100vh;
-    background: var(--nav-bg);
+    background: rgba(215, 112, 215, 1);
     padding: 80px 20px;
     transition: 0.5s ease;
+    opacity: 1;
   }
 
   nav.active {
     right: 0;
+    opacity: 1;
   }
 
   .menu {
     flex-direction: column;
     align-items: center;
+    opacity: 1;
   }
 
   .menu li {
     margin: 15px 0;
     text-align: center;
+    opacity: 1;
   }
 
   /* Hamburger Animation */
@@ -365,7 +368,7 @@ footer p {
   }
 
   .hamburger.active span:nth-child(2) {
-    opacity: 0;
+    opacity: 1;
   }
 
   .hamburger.active span:nth-child(3) {
@@ -383,9 +386,7 @@ footer p {
   }
   
   main {
-    max-width: 1300px;
-    /* min-height: calc(100vh - 53px); */
-    /* padding: 150px 10px 0px; */
+    max-width: 100%;
   }
 
   nav,
@@ -434,52 +435,6 @@ footer p {
     }
   }
 }
-
-@media only screen and (min-width: 1024px) {
-  /* main {
-    /* min-height: calc(100vh - 55px); */
-  } */
-
-  header {
-    margin: 0;
-    max-width: 1920px;
-    top: 20px;
-    background-color: transparent;
-    border-bottom: none;
-  }
-
-  nav,
-  .header-logo-container {
-    margin: 0;
-    background: var(--nav-bg-ff);
-    border: var(--borders);
-  }
-
-  nav {
-    margin-left: auto;
-  }
-
-  .header-logo-container {
-    /* visual fix to help align logo */
-    padding-top: 6px;
-    width: 256px;
-    height: 35px;
-  }
-
-  @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
-    header {
-      -webkit-backdrop-filter: none;
-      backdrop-filter: none;
-    }
-
-    nav,
-    .header-logo-container {
-      -webkit-backdrop-filter: blur(3px);
-      background: rgb(215, 112, 215);
-      backdrop-filter: blur(3px);
-    }
-  }
-
 
 #logout-form button {
   text-decoration: none;

@@ -9,11 +9,11 @@
 ### Join the DigiWorld community today!
 
 ## :camera: Homepage
-![Screenshots of DigiWorld Homepage](https://i.imgur.com/tzMKARk.png)
+![Screenshots of DigiWorld Homepage](https://i.imgur.com/IZAIg0X.png)
 ## :camera: Digimon Database
-![Screenshots of Digimon Database page](https://i.imgur.com/S9pjeXa.png)
+![Screenshots of Digimon Database page](https://i.imgur.com/VMCHoT0.png)
 ## :camera: DigiFarm Page
-![Screenshots of DigiFarm page](https://i.imgur.com/aLPflWj.png)
+![Screenshots of DigiFarm page](https://i.imgur.com/Hd8KfsS.png)
 
 
 ## :computer: Technologies Used

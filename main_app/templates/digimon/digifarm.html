@@ -43,7 +43,7 @@
                     {% if request.user == user %}
                     <form action="{% url 'remove-toy' digimon.id toy.id %}" method="post" class="inline-form">
                       {% csrf_token %}
-                      <button type="submit" class="btn-remove-power">Remove Power Up</button>
+                      <button type="submit" class="btn-remove-power">Remove</button>
                     </form>
                     {% endif %}
                   </div>

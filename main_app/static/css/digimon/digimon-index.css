@@ -22,7 +22,6 @@
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
-  /* max-width: 1300px; */
   max-width: 100vw;
   margin: 0 auto;
 }
@@ -31,8 +30,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 20px; /* Extra spacing between cards */
-  /* max-width: 1300px; */
+  gap: 20px; 
   padding: 25px;
   margin: 0 auto;
 }
@@ -41,27 +39,15 @@ h1 {
   text-align: center;
 }
 
-/* .card {
-  width: 280px;
-  border-radius: 16px;
-  background: rgba(255, 255, 255, 0.2);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-} */
-
 .card {
-  width: 250px; /* Slightly bigger width */
+  width: 250px; 
   background: #ffffff;
   border-radius: 16px;
   border: solid rgb(209, 220, 232);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  padding-bottom: 24px; /* More inner spacing */
+  padding-bottom: 24px; 
 }
 
 .card:hover {
@@ -71,7 +57,7 @@ h1 {
 
 .card-image {
   width: 100%;
-  height: 250px; /* Bigger image display */
+  height: 250px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -82,7 +68,7 @@ h1 {
 .card-image img {
   width: 100%;
   height: 100%;
-  object-fit: contain; /* Ensures the whole image fits */
+  object-fit: contain;
 }
 
 .img {

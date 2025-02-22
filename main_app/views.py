@@ -53,7 +53,6 @@ def associate_digimon(request, user_id, digimon_id):
         digimon = Digimon.objects.get(id=digimon_id)
         user = request.user
         if user.digimon.count() >= 6:
-            # You could add a message here using Django's messages framework
             return redirect('digifarm', user_id=user_id)
         digimon.user.add(user)
         userdigifarm = UserDigifarm.objects.create(user=user, digimon=digimon)
@@ -145,4 +144,3 @@ def remove_toy(request, digimon_id, toy_id):
 def show_all_users(request):
     users = User.objects.all()
     return render(request, 'community.html', {'users': users})
-    # return render(request, 'digimon/index.html', {'digimon': digimon})

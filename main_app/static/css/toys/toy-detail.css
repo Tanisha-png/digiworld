@@ -1,0 +1,77 @@
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.titleName {
+  background: linear-gradient(to right, rgb(215, 112, 215), rgb(129, 10, 101));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
+  letter-spacing: 1.5px;
+  line-height: 1.2;
+  padding-bottom: 5px;
+  animation: fadeIn 1.2s ease-in-out;
+  text-align: center;
+  font-size: 48px;
+  margin: 50px 0 0 0;
+}
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: auto;
+}
+
+.card {
+  width: 224px;
+  height: 224px;
+  margin: 25px 25px 15px 40px;
+  border: solid 2px;
+  box-shadow: var(--card-box-shadow);
+  position: relative;
+}
+
+.card-bg {
+  opacity: 0.4;
+  position: absolute;
+  display: inline-flex;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.card-content {
+  padding: 15px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  color: var(--text-color);
+}
+
+.btn {
+  margin-bottom: 15px;
+}
+
+.card h2 {
+  margin: 7px 0;
+  font-size: var(--font-xl);
+  z-index: 1;
+}
+
+.card p {
+  margin: 0;
+  font-size: var(--font-reg);
+  z-index: 1;
+}
+
+.buttonsDetail {
+  margin: 10px 0px 0px 30px;
+}
