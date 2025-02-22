@@ -5,6 +5,8 @@
 {% endblock %} 
 {% block content %}
 
+<h1 class="titleName">Power Up Details</h1>
+
 <div class="card" style="border-color: {{ toy.color }}">
   <div class="card-bg" style="background-color: {{ toy.color }}"></div>
   <div class="card-content">
@@ -12,7 +14,9 @@
     <p>A {{ toy.color }} power up</p>
   </div>
 </div>
-<a href="{% url 'toy-update' toy.id %}" class="btn warn">Edit</a>
-<a href="{% url 'toy-delete' toy.id %}" class="btn danger">Delete</a>
+<div class="buttonsDetail">
+  <a href="{% url 'toy-update' toy.id %}" class="btn warn">Edit</a>
+  <a href="{% url 'toy-delete' toy.id %}" class="btn danger">Delete</a>
+</div>
 
 {% endblock %}

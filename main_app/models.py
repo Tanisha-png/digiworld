@@ -14,8 +14,6 @@ class Digimon(models.Model):
   
   user = models.ManyToManyField(User, related_name='digimon')
   toys = models.ManyToManyField('Toy')
-  # User --< Digimon
-  # user = models.ForeignKey(User, on_delete=models.CASCADE)
   def clean(self):
     """Ensure a user cannot have more than 6 Digimon."""
     for user in self.user.all():
@@ -35,20 +33,12 @@ class Digimon(models.Model):
   def __str__(self):
     return f"{self.name} ({self.id})"
   
-  # def fed_for_the_day(self):
-  #   return self.feeding_set.filter(date='2025-02-14').count() >= 3
-  
-  # Define a method to get the URL for this particular cat instance
   def get_absolute_url(self):
-    # Use the 'reverse' function to dynamically find URL for 
-    #   viewing this cat's details
     return reverse('digimon-index', kwargs={'digimon_id': self.id })
 
 class UserDigifarm(models.Model):
   user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="user_digifarm")
   digimon = models.ForeignKey(Digimon, on_delete=models.CASCADE, related_name="user_digifarm")
-  
-  # Add fields to here for happiness, nicknames, etc.
   
   def __str__(self):
     return f"{self.user.username}'s {self.digimon.name}"
@@ -69,7 +59,4 @@ class DigimonToy(models.Model):
   
   def __str__(self):
     return f"{self.user_digifarm}'s {self.user_digifarm.digimon.name}'s {self.toy.name}"
-
-# Accessing all digimon owned by a user in that user's digifarm    
-# user_digifarm = user.user_digifarm.all()
  
