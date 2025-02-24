@@ -43,7 +43,7 @@
 7. When you are finished with your DigiFarm, you can log out by clicking Log Out in the navbar.
 
 
-### :moneybag: Deployed Link to PopTaco: https://digiworld-7531dba8c2f8.herokuapp.com/
+### :moneybag: Deployed Link to DigiWorld: https://digiworld-7531dba8c2f8.herokuapp.com/
 
 ### :pushpin: Link to planning materials [here.](https://trello.com/b/e3dcA57K/mod-squad-digimon) 
 
