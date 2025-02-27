@@ -1,6 +1,7 @@
 from django.core.management.base import BaseCommand
 from django.contrib.auth.models import User
 from main_app.models import Digimon
+import random
 
 class Command(BaseCommand):
     help = 'Load initial Digimon data using bulk create'
@@ -22,7 +23,7 @@ class Command(BaseCommand):
                 name=digimon['name'],
                 img=digimon['img'],
                 level=digimon['level'],
-                happiness=50,  
+                happiness=random.randint(0, 100),  
                 user=user
             )
             for digimon in digimon_data
